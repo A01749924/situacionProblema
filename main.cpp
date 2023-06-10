@@ -4,7 +4,6 @@
 #include <sstream>
 #include <string>
 using namespace std;
-
 int main(){
     //Abrir datos
     ifstream entrada("DatosPeliculas.csv");
@@ -18,9 +17,17 @@ int main(){
         
         for (int i=0;i<10;i++){
             getline(ss,cols[i],',');
-            cout << cols[i] << " " ;     
+            cout << cols[i] << " " ;    
         }
         cout << endl << endl;
+        if (cols[8] == "")
+        {
+            cout << endl << "Película" << endl;
+        }
+        else
+        {
+            cout << endl << "Serie" << endl;
+        }
     }
     entrada.close();
     return 0;
