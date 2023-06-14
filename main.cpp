@@ -14,18 +14,17 @@ int main(){
     string linea,l0,l1,l2,l3;
     string cols[10] = {};
     getline(entrada,linea);        //Obtener la línea del título para descartar
+    vector<Video*> videos;
     while (getline(entrada,linea))
     {
         stringstream ss(linea);
         
         for (int i=0;i<10;i++){
             getline(ss,cols[i],',');
-            cout << cols[i] << " " ;    
         }
-        cout << endl << endl;
+        //cout << endl << endl;
         if (cols[8] == "")
         {
-            //cout << endl << "Película" << endl;
             string tempID = cols[0];
             string tempNombre = cols[1];
             int tempDuracion = stoi(cols[2]);
@@ -33,12 +32,11 @@ int main(){
             double tempCalificacion = stod(cols[4]);
             string tempRelease = cols[5];
 
-            Pelicula peli(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease);
-            peli.verVideo();
+            Pelicula* peli = new Pelicula(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease);
+            videos.push_back(peli);
         }
         else
         {
-            //cout << endl << "Serie" << endl;
             string tempID = cols[0];
             string tempNombre = cols[1];
             int tempDuracion = stoi(cols[2]);
@@ -50,11 +48,19 @@ int main(){
             int tempTemporada = stoi(cols[8]);
             int tempEpisodio = stoi(cols[9]);
 
-            Serie ser(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease,tempIDEpisodio,
+            Serie* ser = new Serie(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease,tempIDEpisodio,
             tempNombreEpisodio,tempTemporada,tempEpisodio);
-            ser.verVideo();
+            videos.push_back(ser);
         }
     }
     entrada.close();
+    cout << endl << endl;
+    int tam = size(videos);
+    for (int i=0; i<tam;i++)
+    {
+        cout << to_string(i+1);
+        videos[i]->verVideo();        //Método polimórfico
+    }
+
     return 0;
 }
