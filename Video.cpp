@@ -14,3 +14,13 @@ void Video::verVideo()
 {
     cout << "Nombre: " << nombre << " " <<  "ID: " << ID << endl;
 }
+
+double Video::getCalificacion()
+{
+    return calificacion;
+}
+
+string Video::getGenero()
+{
+    return genero;
+}

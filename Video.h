@@ -18,5 +18,7 @@ class Video
     public:
         Video(string ID,string nombre,string genero,double calificacion,int duracion,string release);
         virtual void verVideo();
+        double getCalificacion();
+        string getGenero();
 };
 #endif

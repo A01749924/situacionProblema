@@ -1,3 +1,8 @@
+/*
+PT1 L13
+PT2 L71
+PT3 L185
+*/
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -9,6 +14,7 @@
 using namespace std;
 
 int main(){
+    //PARTE 1
     //Abrir datos
     ifstream entrada("DatosPeliculas.csv");
     string linea,l0,l1,l2,l3;
@@ -54,7 +60,7 @@ int main(){
         }
     }
     entrada.close();
-    cout << endl << endl;
+    cout << endl;
     int tam = size(videos);
     for (int i=0; i<tam;i++)
     {
@@ -62,5 +68,129 @@ int main(){
         videos[i]->verVideo();        //Método polimórfico
     }
 
+    //Parte 2
+    cout << endl << endl << "FILTRAR POR GÉNERO" << endl << "Los géneros disponibles son" 
+    << endl << "1) Acción\n" << "2) Aventura\n" << "3) Drama\n" << "4) Fantasy\n" << "5) Romance\n" << "6) Sci-Fi\n"
+    << "7) Suspenso\n" << "8) Animación\n" << "9) Familiar\n" << "10) Musical\n" << "11) Guerra\n" << "12) Crimen\n"
+    << "13) Misterio\n" << "14) Comedia\n" << "15) Western\n" << "16) Biografía\n" << endl << 
+    "Ingrese el número del género deseado: ";
+    string genDeseado;
+    int input;
+    while (true){
+        cin >> input;
+        if (input == 1)
+        {
+            genDeseado = "Accion";
+            break;
+        }
+        else if (input == 2)
+        {
+            genDeseado = "Aventura";
+            break;
+        }
+        else if (input == 3)
+        {
+            genDeseado = "Drama";
+            break;
+        }
+        else if (input == 4)
+        {
+            genDeseado = "Fantasy";
+            break;
+        }
+        else if (input == 5)
+        {
+            genDeseado = "Romance";
+            break;
+        }
+        else if (input == 6)
+        {
+            genDeseado = "Sci-Fi";
+            break;
+        }
+        else if (input == 7)
+        {
+            genDeseado = "Suspenso";
+            break;
+        }
+        else if (input == 8)
+        {
+            genDeseado = "Animacion";
+            break;
+        }
+        else if (input == 9)
+        {
+            genDeseado = "Familiar";
+            break;
+        }
+        else if (input == 10)
+        {
+            genDeseado = "Musical";
+            break;
+        }
+        else if (input == 11)
+        {
+            genDeseado = "Guerra";
+            break;
+        }
+        else if (input == 12)
+        {
+            genDeseado = "Crimen";
+            break;
+        }
+        else if (input == 13)
+        {
+            genDeseado = "Misterio";
+            break;
+        }
+        else if (input == 14)
+        {
+            genDeseado = "Comedia";
+            break;
+        }
+        else if (input == 15)
+        {
+            genDeseado = "Western";
+            break;
+        }
+        else if (input == 16)
+        {
+            genDeseado = "Biografía";
+            break;
+        }
+        else{
+            cout << "Valor inválido, ingrese un número entero del 1-16: ";
+        }
+    }
+    cout << "Ingrese la calificación mínima a filtrar: ";
+    double califDeseada;
+    cin >> califDeseada;
+    string genTemp;
+    double califTemp;
+    cout << "Mostrando todos los videos del género " << genDeseado << " con una calificación mayor a " << califDeseada << endl;
+    for (int i=0; i<tam;i++)
+    {
+        genTemp=videos[i]->getGenero();
+        califTemp=videos[i]->getCalificacion();
+        if(califTemp>=califDeseada)
+        {
+            size_t found = genTemp.find(genDeseado);
+            if (found != string::npos) 
+            {
+                videos[i]->verVideo();
+            } 
+        }
+
+    }
+
+    //Parte 3
+
+
+    //Parte 4
+
+
+    //Parte 5
+
+    
     return 0;
 }
