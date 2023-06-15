@@ -230,7 +230,7 @@ int main(){
     cin.ignore();
     getline(cin,serieSeleccionada3);
     cout << endl;
-    for (int i = 0; i < tam; ++i) 
+    for (int i = 0; i < tam; i++) 
     {
         if (Serie* serieVector3 = dynamic_cast<Serie*>(videos[i])) 
         {
@@ -240,23 +240,16 @@ int main(){
             }
         }
     }    
-
-
     //Parte 4
 
-        for (int i=0; i<size(nombresPelis);i++)
-    {
-        cout << nombresPelis[i] << endl;
-    }
+
     cout << endl;
-    string califSeleccionadaStr5;
     cout << "Ingrese La calificación mínima para pedir película: ";
-    cin.ignore();
-    getline(cin,califSeleccionadaStr5);
-    double califSeleccionada5 = stod(califSeleccionadaStr5);
+    double califSeleccionada5;
+    cin >> califSeleccionada5;
     cout << endl;
 
-    for (int i = 0; i < tam; ++i) 
+    for (int i = 0; i < tam; i++) 
     {
         if (Pelicula* peliVector5 = dynamic_cast<Pelicula*>(videos[i])) 
         {
@@ -270,7 +263,6 @@ int main(){
     //Parte 5
     //Parte 6
 
-    char menu6;
     string serieAProm;
     cout << endl << endl << "CALIFICACIÓN PROMEDIO DE UNA SERIE" << endl;
     for (int i=0; i<size(nombresSeries);i++)
@@ -293,7 +285,6 @@ int main(){
             {
                 promedioSerie += videos[i]->getCalificacion();
                 contadorEpisodios ++;
-                cout << to_string(promedioSerie) << endl << to_string(contadorEpisodios);
             }
         }
     }    
