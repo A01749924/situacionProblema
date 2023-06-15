@@ -225,129 +225,78 @@ int main(){
     {
         cout << nombresSeries[i] << endl;
     }
-    string serieSeleccionada;
+    string serieSeleccionada3;
     cout << "Ingrese el nombre de la serie deseada: ";
     cin.ignore();
-    getline(cin,serieSeleccionada);
+    getline(cin,serieSeleccionada3);
     cout << endl;
     for (int i = 0; i < tam; ++i) 
     {
-        if (Serie* serieVector = dynamic_cast<Serie*>(videos[i])) 
+        if (Serie* serieVector3 = dynamic_cast<Serie*>(videos[i])) 
         {
-            if (serieVector->getNombre() == serieSeleccionada)
+            if (serieVector3->getNombre() == serieSeleccionada3)
             {
-                serieVector->verEpisodio();
+                serieVector3->verEpisodio();
             }
         }
     }    
 
+
     //Parte 4
 
+        for (int i=0; i<size(nombresPelis);i++)
+    {
+        cout << nombresPelis[i] << endl;
+    }
+    cout << endl;
+    string califSeleccionadaStr5;
+    cout << "Ingrese La calificación mínima para pedir película: ";
+    cin.ignore();
+    getline(cin,califSeleccionadaStr5);
+    double califSeleccionada5 = stod(califSeleccionadaStr5);
+    cout << endl;
+
+    for (int i = 0; i < tam; ++i) 
+    {
+        if (Pelicula* peliVector5 = dynamic_cast<Pelicula*>(videos[i])) 
+        {
+            if ((peliVector5->getCalificacion()) > califSeleccionada5)
+            {
+                peliVector5->verVideo();
+            }
+        }
+    }    
 
     //Parte 5
-
-
     //Parte 6
 
     char menu6;
     string serieAProm;
-    cout << endl << endl << "CALIFICACIÓN PROMEDIO DE UNA SERIE" << endl << "Las series disponibles son: " 
-    << endl << "A) Game Of Thrones\n" << "B) Friends\n" << "C) Modern Familiar\n" << "D) The 100\n" << 
-    "E) The Simpsons\n" << "F) The Big Bang Theory\n" << "G) Memories Of The Alhambra\n"
-    << "H) Death Note\n" << "I) Fate Zero\n" << "J) Unbreakable Kimmy Schmidt\n" << "K) Black Mirror\n"
-    << "L) Chilling Aventura of Sabrina \n" << "M) Stranger Things\n" << "N) Maniac\n";
-
-    cout << "Seleccione la letra correspondiente a la serie que busca la calificación promedio: ";
-    while (true)
+    cout << endl << endl << "CALIFICACIÓN PROMEDIO DE UNA SERIE" << endl;
+    for (int i=0; i<size(nombresSeries);i++)
     {
-        cin >> menu6;
-        if (menu6 == 'A' || menu6 == 'a')
-        {
-            serieAProm = "Game Of Thrones";
-            break;
-        }
-        else if (menu6 == 'B' || menu6 == 'b')
-        {
-            serieAProm = "Friends";
-            break;
-        }
-        else if (menu6 == 'C' || menu6 == 'c')
-        {
-            serieAProm = "Modern Familiar";
-            break;
-        }
-        else if (menu6 == 'D' || menu6 == 'd')
-        {
-            serieAProm = "The 100";
-            break;
-        }
-        else if (menu6 == 'E' || menu6 == 'e')
-        {
-            serieAProm = "The Simpsons";
-            break;
-        }
-        else if (menu6 == 'F' || menu6 == 'f')
-        {
-            serieAProm = "The Big Bang Theory";
-            break;
-        }
-        else if (menu6 == 'G' || menu6 == 'g')
-        {
-            serieAProm = "Memories Of The Alhambra";
-            break;
-        }
-         else if (menu6 == 'H' || menu6 == 'h')
-        {
-            serieAProm = "Death Note";
-            break;
-        }
-        else if (menu6 == 'I' || menu6 == 'i')
-        {
-            serieAProm = "Fate Zero";
-            break;
-        }
-        else if (menu6 == 'J' || menu6 == 'j')
-        {
-            serieAProm = "Unbreakable Kimmy Schmidt";
-            break;
-        }
-        else if (menu6 == 'K' || menu6 == 'k')
-        {
-            serieAProm = "Black Mirror";
-            break;
-        }
-        else if (menu6 == 'L' || menu6 == 'l')
-        {
-            serieAProm = "Chilling Aventura of Sabrina";
-            break;
-        }
-        else if (menu6 == 'M' || menu6 == 'm')
-        {
-            serieAProm = "Stranger Things";
-            break;
-        }
-        else if (menu6 == 'N' || menu6 == 'n')
-        {
-            serieAProm = "Maniac";
-            break;
-        }
-        else
-        {
-            cout << "Carácter no válido, ingresar otra vez: ";
-        }
-    }
-    string nombreTemp;
-    double promedioSerie;
+        cout << nombresSeries[i] << endl;
+    }    
+    
+    cout << "Ingrese el nombre de la serie deseada para obtener su promedio: ";
+    string serieSeleccionada6;
+    cin.ignore();
+    getline(cin,serieSeleccionada6);
+    cout << endl;
+    double promedioSerie = 0;
     int contadorEpisodios = 0;
-    for (int i=0; i<tam;i++)
+    for (int i = 0; i < tam; ++i) 
     {
-        nombreTemp = videos[i]->getNombre();
-        if (nombreTemp == serieAProm)
+        if (Serie* serieVector6 = dynamic_cast<Serie*>(videos[i])) 
         {
-            promedioSerie += videos[i]->getCalificacion();
-            contadorEpisodios ++;
+            if (serieVector6->getNombre() == serieSeleccionada6)
+            {
+                promedioSerie += videos[i]->getCalificacion();
+                contadorEpisodios ++;
+                cout << to_string(promedioSerie) << endl << to_string(contadorEpisodios);
+            }
         }
-    }
+    }    
     cout << endl << "La calificación promedio de la serie es de: " << to_string(promedioSerie/contadorEpisodios) << endl;
 
 
