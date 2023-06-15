@@ -15,6 +15,7 @@ class Serie : public Video
     public:
         Serie(string ID,string nombre,string genero,double calificacion,int duracion,string release,
         string IDEpisodio,string nombreEpisodio,int temporada,int episodio);
+        void verEpisodio();
 };
 
 #endif

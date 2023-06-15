@@ -20,5 +20,7 @@ class Video
         virtual void verVideo();
         double getCalificacion();
         string getGenero();
+        void setCalificacion(double calificacion);
+        string getNombre();
 };
 #endif

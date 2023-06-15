@@ -24,3 +24,13 @@ string Video::getGenero()
 {
     return genero;
 }
+
+void Video::setCalificacion(double calificacion)
+{
+    this->calificacion=calificacion;
+}
+
+string Video::getNombre()
+{
+    return nombre;
+}

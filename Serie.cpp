@@ -6,3 +6,8 @@ Video(ID,nombre,genero,calificacion,duracion,release),IDEpisodio(IDEpisodio),nom
 temporada(temporada),episodio(episodio)
 {
 }
+
+void Serie::verEpisodio()
+{
+    cout << "SERIE: " << nombre << "EPISODIO: " << nombreEpisodio;
+}
