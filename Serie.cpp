@@ -9,5 +9,5 @@ temporada(temporada),episodio(episodio)
 
 void Serie::verEpisodio()
 {
-    cout << "SERIE: " << nombre << "EPISODIO: " << nombreEpisodio;
+    cout << "SERIE: " << nombre << " EPISODIO: " << nombreEpisodio << endl;
 }

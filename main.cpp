@@ -20,6 +20,8 @@ int main(){
     string linea,l0,l1,l2,l3;
     string cols[10] = {};
     getline(entrada,linea);        //Obtener la línea del título para descartar
+    vector<string> nombresPelis;
+    vector<string> nombresSeries;
     vector<Video*> videos;
     while (getline(entrada,linea))
     {
@@ -40,6 +42,18 @@ int main(){
 
             Pelicula* peli = new Pelicula(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease);
             videos.push_back(peli);
+            int dentro = 0;
+            for (int i=0; i<size(nombresPelis);i++)
+            {
+                if(tempNombre == nombresPelis[i])
+                {
+                    dentro++;
+                }
+            }
+            if(dentro<1)
+            {
+                nombresPelis.push_back(tempNombre);
+            }
         }
         else
         {
@@ -57,10 +71,33 @@ int main(){
             Serie* ser = new Serie(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease,tempIDEpisodio,
             tempNombreEpisodio,tempTemporada,tempEpisodio);
             videos.push_back(ser);
+            int dentro = 0;
+            for (int i=0; i<size(nombresSeries);i++)
+            {
+                if(tempNombre == nombresSeries[i])
+                {
+                    dentro++;
+                }
+            }
+            if(dentro<1)
+            {
+                nombresSeries.push_back(tempNombre);
+            }
         }
     }
     entrada.close();
+    for (int i=0; i<size(nombresPelis);i++)
+    {
+        cout << nombresPelis[i] << endl;
+    }
     cout << endl;
+
+    for (int i=0; i<size(nombresSeries);i++)
+    {
+        cout << nombresSeries[i] << endl;
+    }
+    cout << endl;
+
     int tam = size(videos);
     for (int i=0; i<tam;i++)
     {
@@ -184,7 +221,25 @@ int main(){
     }
 
     //Parte 3
-    
+    for (int i=0; i<size(nombresSeries);i++)
+    {
+        cout << nombresSeries[i] << endl;
+    }
+    string serieSeleccionada;
+    cout << "Ingrese el nombre de la serie deseada: ";
+    cin.ignore();
+    getline(cin,serieSeleccionada);
+    cout << endl;
+    for (int i = 0; i < tam; ++i) 
+    {
+        if (Serie* serieVector = dynamic_cast<Serie*>(videos[i])) 
+        {
+            if (serieVector->getNombre() == serieSeleccionada)
+            {
+                serieVector->verEpisodio();
+            }
+        }
+    }    
 
     //Parte 4
 
@@ -276,8 +331,10 @@ int main(){
             serieAProm = "Maniac";
             break;
         }
-        
-        cout << "Carácter no válido, ingresar otra vez: ";
+        else
+        {
+            cout << "Carácter no válido, ingresar otra vez: ";
+        }
     }
     string nombreTemp;
     double promedioSerie;
