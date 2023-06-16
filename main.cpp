@@ -1,7 +1,4 @@
 /*
-PT1 L13
-PT2 L71
-PT3 L185
 */
 #include <iostream>
 #include <vector>
@@ -13,24 +10,26 @@ PT3 L185
 #include "Serie.h"
 using namespace std;
 
-int main(){
-    //PARTE 1
-    //Abrir datos
+int main()
+{
+    // PARTE 1
+    // Abrir datos
     ifstream entrada("DatosPeliculas.csv");
-    string linea,l0,l1,l2,l3;
+    string linea, l0, l1, l2, l3;
     string cols[10] = {};
-    getline(entrada,linea);        //Obtener la línea del título para descartar
+    getline(entrada, linea); // Obtener la línea del título para descartar
     vector<string> nombresPelis;
     vector<string> nombresSeries;
-    vector<Video*> videos;
-    while (getline(entrada,linea))
+    vector<Video *> videos;
+    while (getline(entrada, linea))
     {
         stringstream ss(linea);
-        
-        for (int i=0;i<10;i++){
-            getline(ss,cols[i],',');
+
+        for (int i = 0; i < 10; i++)
+        {
+            getline(ss, cols[i], ',');
         }
-        //cout << endl << endl;
+        // cout << endl << endl;
         if (cols[8] == "")
         {
             string tempID = cols[0];
@@ -40,17 +39,17 @@ int main(){
             double tempCalificacion = stod(cols[4]);
             string tempRelease = cols[5];
 
-            Pelicula* peli = new Pelicula(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease);
+            Pelicula *peli = new Pelicula(tempID, tempNombre, tempGenero, tempCalificacion, tempDuracion, tempRelease);
             videos.push_back(peli);
             int dentro = 0;
-            for (int i=0; i<size(nombresPelis);i++)
+            for (int i = 0; i < size(nombresPelis); i++)
             {
-                if(tempNombre == nombresPelis[i])
+                if (tempNombre == nombresPelis[i])
                 {
                     dentro++;
                 }
             }
-            if(dentro<1)
+            if (dentro < 1)
             {
                 nombresPelis.push_back(tempNombre);
             }
@@ -68,52 +67,71 @@ int main(){
             int tempTemporada = stoi(cols[8]);
             int tempEpisodio = stoi(cols[9]);
 
-            Serie* ser = new Serie(tempID,tempNombre,tempGenero,tempCalificacion,tempDuracion,tempRelease,tempIDEpisodio,
-            tempNombreEpisodio,tempTemporada,tempEpisodio);
+            Serie *ser = new Serie(tempID, tempNombre, tempGenero, tempCalificacion, tempDuracion, tempRelease, tempIDEpisodio,
+                                   tempNombreEpisodio, tempTemporada, tempEpisodio);
             videos.push_back(ser);
             int dentro = 0;
-            for (int i=0; i<size(nombresSeries);i++)
+            for (int i = 0; i < size(nombresSeries); i++)
             {
-                if(tempNombre == nombresSeries[i])
+                if (tempNombre == nombresSeries[i])
                 {
                     dentro++;
                 }
             }
-            if(dentro<1)
+            if (dentro < 1)
             {
                 nombresSeries.push_back(tempNombre);
             }
         }
     }
     entrada.close();
-    for (int i=0; i<size(nombresPelis);i++)
+    for (int i = 0; i < size(nombresPelis); i++)
     {
         cout << nombresPelis[i] << endl;
     }
     cout << endl;
 
-    for (int i=0; i<size(nombresSeries);i++)
+    for (int i = 0; i < size(nombresSeries); i++)
     {
         cout << nombresSeries[i] << endl;
     }
     cout << endl;
 
     int tam = size(videos);
-    for (int i=0; i<tam;i++)
+    for (int i = 0; i < tam; i++)
     {
-        cout << to_string(i+1);
-        videos[i]->verVideo();        //Método polimórfico
+        cout << to_string(i + 1);
+        videos[i]->verVideo(); // Método polimórfico
     }
 
-    //Parte 2
-    cout << endl << endl << "FILTRAR POR GÉNERO" << endl << "Los géneros disponibles son" 
-    << endl << "1) Acción\n" << "2) Aventura\n" << "3) Drama\n" << "4) Fantasy\n" << "5) Romance\n" << "6) Sci-Fi\n"
-    << "7) Suspenso\n" << "8) Animación\n" << "9) Familiar\n" << "10) Musical\n" << "11) Guerra\n" << "12) Crimen\n"
-    << "13) Misterio\n" << "14) Comedia\n" << "15) Western\n" << "16) Biografía\n" << endl << 
-    "Ingrese el número del género deseado: ";
+    // Parte 2
+    cout << endl
+         << endl
+         << "FILTRAR POR GÉNERO" << endl
+         << "Los géneros disponibles son"
+         << endl
+         << "1) Acción\n"
+         << "2) Aventura\n"
+         << "3) Drama\n"
+         << "4) Fantasy\n"
+         << "5) Romance\n"
+         << "6) Sci-Fi\n"
+         << "7) Suspenso\n"
+         << "8) Animación\n"
+         << "9) Familiar\n"
+         << "10) Musical\n"
+         << "11) Guerra\n"
+         << "12) Crimen\n"
+         << "13) Misterio\n"
+         << "14) Comedia\n"
+         << "15) Western\n"
+         << "16) Biografía\n"
+         << endl
+         << "Ingrese el número del género deseado: ";
     string genDeseado;
     int input;
-    while (true){
+    while (true)
+    {
         cin >> input;
         if (input == 1)
         {
@@ -195,7 +213,8 @@ int main(){
             genDeseado = "Biografía";
             break;
         }
-        else{
+        else
+        {
             cout << "Valor inválido, ingrese un número entero del 1-16: ";
         }
     }
@@ -205,43 +224,41 @@ int main(){
     string genTemp;
     double califTemp;
     cout << "Mostrando todos los videos del género " << genDeseado << " con una calificación mayor a " << califDeseada << endl;
-    for (int i=0; i<tam;i++)
+    for (int i = 0; i < tam; i++)
     {
-        genTemp=videos[i]->getGenero();
-        califTemp=videos[i]->getCalificacion();
-        if(califTemp>=califDeseada)
+        genTemp = videos[i]->getGenero();
+        califTemp = videos[i]->getCalificacion();
+        if (califTemp >= califDeseada)
         {
             size_t found = genTemp.find(genDeseado);
-            if (found != string::npos) 
+            if (found != string::npos)
             {
                 videos[i]->verVideo();
-            } 
+            }
         }
-
     }
 
-    //Parte 3
-    for (int i=0; i<size(nombresSeries);i++)
+    // Parte 3
+    for (int i = 0; i < size(nombresSeries); i++)
     {
         cout << nombresSeries[i] << endl;
     }
     string serieSeleccionada3;
     cout << "Ingrese el nombre de la serie deseada: ";
     cin.ignore();
-    getline(cin,serieSeleccionada3);
+    getline(cin, serieSeleccionada3);
     cout << endl;
-    for (int i = 0; i < tam; i++) 
+    for (int i = 0; i < tam; i++)
     {
-        if (Serie* serieVector3 = dynamic_cast<Serie*>(videos[i])) 
+        if (Serie *serieVector3 = dynamic_cast<Serie *>(videos[i]))
         {
             if (serieVector3->getNombre() == serieSeleccionada3)
             {
                 serieVector3->verEpisodio();
             }
         }
-    }    
-    //Parte 4
-
+    }
+    // Parte 4
 
     cout << endl;
     cout << "Ingrese La calificación mínima para pedir película: ";
@@ -249,48 +266,111 @@ int main(){
     cin >> califSeleccionada5;
     cout << endl;
 
-    for (int i = 0; i < tam; i++) 
+    for (int i = 0; i < tam; i++)
     {
-        if (Pelicula* peliVector5 = dynamic_cast<Pelicula*>(videos[i])) 
+        if (Pelicula *peliVector5 = dynamic_cast<Pelicula *>(videos[i]))
         {
             if ((peliVector5->getCalificacion()) > califSeleccionada5)
             {
                 peliVector5->verVideo();
             }
         }
-    }    
+    }
 
-    //Parte 5
-    //Parte 6
+    // Parte 5
+
+    string nombreVidCalif, nombreEpisCalif;
+    int numEpisodios = 0;
+    double oldCalif,newCalif;
+    cout << "Ingrese el nombre de la serie o película a calificar: ";
+    cin.ignore();
+    getline(cin, nombreVidCalif);
+    for (int i = 0; i < tam; ++i)
+    {
+        if (videos[i]->getNombre() == nombreVidCalif)
+        {
+            numEpisodios++;
+        }
+    }
+    if (numEpisodios > 1)
+    {
+        for (int i = 0; i < tam; i++)
+        {
+            if (Serie *serieVector5 = dynamic_cast<Serie *>(videos[i]))
+            {
+                if (serieVector5->getNombre() == nombreVidCalif)
+                {
+                    serieVector5->verEpisodio();
+                }
+            }
+        }
+        cout << "Ingrese el nombre del capítulo de la serie " << nombreVidCalif << " a calificar: ";
+        getline(cin,nombreEpisCalif);
+        for (int i = 0; i < tam; i++)
+        {
+            if (Serie *serieVector5 = dynamic_cast<Serie *>(videos[i]))
+            {
+                if ((serieVector5->getNombreEpisodio() == nombreEpisCalif) && (serieVector5->getNombre() == nombreVidCalif))
+                {
+                    oldCalif = serieVector5->getCalificacion();
+                    cout << "Ingrese la calificación para reeemplazarla: ";
+                    cin >> newCalif;
+                    serieVector5->setCalificacion(newCalif);
+                    cout << "La calificación de ";
+                    serieVector5->verEpisodio();
+                    cout<< "cambio de " << to_string(oldCalif) << " a " << to_string(serieVector5->getCalificacion());
+                }
+            }
+        }
+    }
+    else
+    {
+        for (int i = 0; i < tam; i++)
+        {
+            if (videos[i]->getNombre() == nombreVidCalif)
+                {
+                oldCalif = videos[i]->getCalificacion();
+                cout << "Ingrese la calificación para reeemplazarla: ";
+                cin >> newCalif;
+                videos[i]->setCalificacion(newCalif);
+                cout << "La calificación de ";
+                videos[i]->verVideo();
+                cout<< "cambio de " << to_string(oldCalif) << " a " << to_string(videos[i]->getCalificacion());
+                }
+        }
+    }
+
+    // Parte 6
 
     string serieAProm;
-    cout << endl << endl << "CALIFICACIÓN PROMEDIO DE UNA SERIE" << endl;
-    for (int i=0; i<size(nombresSeries);i++)
+    cout << endl
+         << endl
+         << "CALIFICACIÓN PROMEDIO DE UNA SERIE" << endl;
+    for (int i = 0; i < size(nombresSeries); i++)
     {
         cout << nombresSeries[i] << endl;
-    }    
-    
+    }
+
     cout << "Ingrese el nombre de la serie deseada para obtener su promedio: ";
     string serieSeleccionada6;
     cin.ignore();
-    getline(cin,serieSeleccionada6);
+    getline(cin, serieSeleccionada6);
     cout << endl;
     double promedioSerie = 0;
     int contadorEpisodios = 0;
-    for (int i = 0; i < tam; ++i) 
+    for (int i = 0; i < tam; ++i)
     {
-        if (Serie* serieVector6 = dynamic_cast<Serie*>(videos[i])) 
+        if (Serie *serieVector6 = dynamic_cast<Serie *>(videos[i]))
         {
             if (serieVector6->getNombre() == serieSeleccionada6)
             {
                 promedioSerie += videos[i]->getCalificacion();
-                contadorEpisodios ++;
+                contadorEpisodios++;
             }
         }
-    }    
-    cout << endl << "La calificación promedio de la serie es de: " << to_string(promedioSerie/contadorEpisodios) << endl;
-
-
+    }
+    cout << endl
+         << "La calificación promedio de la serie es de: " << to_string(promedioSerie / contadorEpisodios) << endl;
 
     return 0;
 }

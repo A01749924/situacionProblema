@@ -11,3 +11,8 @@ void Serie::verEpisodio()
 {
     cout << "SERIE: " << nombre << " EPISODIO: " << nombreEpisodio << endl;
 }
+
+string Serie::getNombreEpisodio()
+{
+    return nombreEpisodio;
+}
