@@ -10,7 +10,8 @@ using namespace std;
 
 void desplegarMenu()
 {
-    cout << "Seleccione una opción:" << endl
+    cout << endl
+         << "Seleccione una opción:" << endl
          << "1) Cargar el archivo de datos (sin este no se pueden ejecutar las opciones 2-6)"
          << endl
          << "2) Mostrar todos los videos con cierta calificación mínima de un género" << endl
@@ -416,8 +417,16 @@ int main()
                                     if ((serieVector5->getNombreEpisodio() == nombreEpisCalif) && (serieVector5->getNombre() == nombreVidCalif))
                                     {
                                         oldCalif = serieVector5->getCalificacion();
-                                        cout << "Ingrese la calificación para reeemplazarla: ";
-                                        cin >> newCalif;
+                                        double newCalif = 0;
+                                        while (newCalif < 1 || newCalif > 7)
+                                        {
+                                            cout << "Ingrese la nueva calificación: ";
+                                            cin >> newCalif;
+                                            if (newCalif < 1 || newCalif > 7)
+                                            {
+                                                cout << "La calificación no es válida. Tiene que estar entre 1 y 7" << endl;
+                                            }
+                                        }
                                         serieVector5->setCalificacion(newCalif);
                                         cout << "La calificación de ";
                                         serieVector5->verVideo();
@@ -434,8 +443,16 @@ int main()
                             if (videos[i]->getNombre() == nombreVidCalif)
                             {
                                 oldCalif = videos[i]->getCalificacion();
-                                cout << "Ingrese la calificación para reeemplazarla: ";
-                                cin >> newCalif;
+                                double newCalif = 0;
+                                while (newCalif < 1 || newCalif > 7)
+                                {
+                                    cout << "Ingrese la nueva calificación: ";
+                                    cin >> newCalif;
+                                    if (newCalif < 1 || newCalif > 7)
+                                    {
+                                        cout << "La calificación no es válida. Tiene que estar entre 1 y 7" << endl;
+                                    }
+                                }
                                 videos[i]->setCalificacion(newCalif);
                                 cout << "La calificación de ";
                                 videos[i]->verVideo();
@@ -446,7 +463,47 @@ int main()
                 }
                 else
                 {
-                    cout << "A6" << endl;
+                    Serie vacio;
+                    Serie sbtl;
+                    double subtotal = 0;
+                    double local = 0;
+                    int numEpisodios = 0;
+                    for (int i = 0; i < size(nombresSeries); i++)
+                    {
+                        cout << nombresSeries[i] << endl;
+                    }
+                    int contiene = 0;
+                    string serieAProm;
+                    while (contiene == 0)
+                    {
+                        cout << "Ingrese el nombre de la serie para obtener su promedio: ";
+                        getline(cin, serieAProm);
+                        for (int i = 0; i < tam; i++)
+                        {
+                            if (videos[i]->getNombre() == serieAProm)
+                            {
+                                contiene++;
+                            }
+                        }
+                        if (contiene == 0)
+                        {
+                            cout << "La serie no existe en el catálogo"  << endl;
+                        }
+                    }
+                    for (int i = 0; i < tam; i++)
+                    {
+                        if (Serie *serieVector6 = dynamic_cast<Serie *>(videos[i]))
+                        {
+                            if (serieVector6->getNombre() == serieAProm)
+                            {
+                                vacio.setCalificacion(vacio + *serieVector6);
+                                numEpisodios ++;
+                            }
+                        }
+                    }
+                    subtotal = vacio.getCalificacion();
+                    cout << to_string(subtotal) << endl;
+                    cout << "El promedio de la serie " << serieAProm << " es de: " << to_string(subtotal/numEpisodios) << endl;
                 }
             }
         }

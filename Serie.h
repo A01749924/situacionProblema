@@ -13,11 +13,13 @@ class Serie : public Video
         int temporada;
         int episodio;
     public:
+        Serie();
         Serie(string ID,string nombre,string genero,double calificacion,int duracion,string release,
         string IDEpisodio,string nombreEpisodio,int temporada,int episodio);
         void verEpisodio();
         string getNombreEpisodio();
         void verVideo();
+        double operator+ (Serie &sum);
 };
 
 #endif
