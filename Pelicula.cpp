@@ -4,3 +4,8 @@ Pelicula::Pelicula(string ID, string nombre, string genero, double calificacion,
 Video(ID,nombre,genero,calificacion,duracion,release)
 {
 }
+
+void Pelicula::verVideo()
+{
+    cout << "PELÍCULA: " << nombre << endl;
+}

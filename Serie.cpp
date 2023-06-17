@@ -16,3 +16,8 @@ string Serie::getNombreEpisodio()
 {
     return nombreEpisodio;
 }
+
+void Serie::verVideo()
+{
+    cout << "SERIE: " << nombre << " EPISODIO: " << nombreEpisodio << endl;
+}

@@ -10,11 +10,6 @@ Video::Video(string ID, string nombre, string genero, double calificacion, int d
     this->release=release;
 }
 
-void Video::verVideo()
-{
-    cout << "Nombre: " << nombre << " " <<  "ID: " << ID << endl;
-}
-
 double Video::getCalificacion()
 {
     return calificacion;

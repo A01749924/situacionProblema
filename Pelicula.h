@@ -10,5 +10,6 @@ class Pelicula : public Video
 {
     public:
     Pelicula(string ID,string nombre,string genero,double calificacion,int duracion,string release);
+    void verVideo();
 };
 #endif
